@@ -1,7 +1,21 @@
+'''
+tic tac toe
+A simple tic tac toe game.  the board is set up as :
+ 7 | 8 | 9 
+-----------
+ 4 | 5 | 6
+-----------
+ 1 | 2 | 3
+ 
+Andre Dallaire
+26/04/2022
+'''
 import os
 
+# clears the console
 clearConsole = lambda: os.system('cls' if os.name in ('nt', 'dos') else 'clear')
 
+# outputs the board to the console
 def display_board(board):
     
     print(board[7] + " | " + board[8] + " | " + board[9])
@@ -10,10 +24,12 @@ def display_board(board):
     print("---------")
     print(board[1] + " | " + board[2] + " | " + board[3])
 
+# places a marker on the board at a given position
 def place_marker(board, marker, position):
     
     board[position] = marker
 
+# checks if a given marker has won the game
 def win_check(board, mark):
     
     return board[7] == board[8] == board[9] == mark or \
@@ -25,14 +41,17 @@ def win_check(board, mark):
            board[7] == board[5] == board[3] == mark or \
            board[9] == board[5] == board[1] == mark
 
+# checks if the give position on the board is free
 def space_check(board, position):
     
     return board[position] == ' '
 
+# checks if the board is full
 def full_board_check(board):
     
     return not ' ' in board
 
+# gets a valid position from the player
 def player_choice(board):
     
     while True:
@@ -49,9 +68,11 @@ def player_choice(board):
         except:
             print("position must be a digit between 1 and 9")
 
+# resets the board to its starting configuration
 def reset_board():
     return ('X', ['#',' ',' ',' ',' ',' ',' ',' ',' ',' '])
 
+# determines if the players want to play again
 def play_again():
 
     while True:
